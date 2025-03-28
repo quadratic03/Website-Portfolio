@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#14b8a6'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        html { scroll-behavior: smooth; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #6366f1;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .project-card { transition: transform 0.3s, box-shadow 0.3s; }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .skill-bar {
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #6366f1;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #6366f1;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+        }
+    </style>
+</head>
+<body class="bg-white font-['Inter']">
+    <div class="cursor-dot hidden lg:block"></div>
+    <div class="cursor-outline hidden lg:block"></div>
+    <nav class="fixed w-full bg-white/80 backdrop-blur-md z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <a href="#" class="text-3xl font-['Pacifico'] text-primary">logo</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link relative text-gray-800 hover:text-primary transition-colors">Home</a>
+                    <a href="#work" class="nav-link relative text-gray-800 hover:text-primary transition-colors">Work</a>
+                    <a href="#about" class="nav-link relative text-gray-800 hover:text-primary transition-colors">About</a>
+                    <a href="#contact" class="nav-link relative text-gray-800 hover:text-primary transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden w-10 h-10 flex items-center justify-center" id="menuBtn">
+                    <i class="ri-menu-line text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="fixed top-20 right-0 w-full bg-white/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-40" id="mobileMenu">
+        <div class="p-6 space-y-4">
+            <a href="#home" class="block text-gray-800 hover:text-primary transition-colors">Home</a>
+            <a href="#work" class="block text-gray-800 hover:text-primary transition-colors">Work</a>
+            <a href="#about" class="block text-gray-800 hover:text-primary transition-colors">About</a>
+            <a href="#contact" class="block text-gray-800 hover:text-primary transition-colors">Contact</a>
+        </div>
+    </div>
+    <section id="home" class="min-h-screen relative overflow-hidden bg-gradient-to-br from-white to-gray-50">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute inset-0" style="background-image: url('https://public.readdy.ai/ai/img_res/fcb1f22433d247adfc502743f8c4d362.jpg'); background-size: cover; background-position: center; opacity: 0.1;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                        Creative
+                        <span class="text-primary">Designer</span>
+                        & Developer
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">Crafting digital experiences that blend creativity with functionality. Specialized in UI/UX design and front-end development.</p>
+                    <div class="flex space-x-4">
+                        <a href="#work" class="px-8 py-3 bg-primary text-white rounded-button hover:bg-primary/90 transition-colors cursor-pointer">View Work</a>
+                        <a href="#contact" class="px-8 py-3 border-2 border-primary text-primary rounded-button hover:bg-primary/5 transition-colors cursor-pointer">Contact Me</a>
+                    </div>
+                </div>
+                <div class="reveal lg:block">
+                    <img src="https://public.readdy.ai/ai/img_res/475d7b086c7caa5e846d46450e8ac5b7.jpg" alt="Hero Image" class="w-full rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <i class="ri-arrow-down-line text-3xl text-primary"></i>
+        </div>
+    </section>
+
+    <section id="work" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Featured Projects</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore a selection of my recent work showcasing web design, development, and creative solutions.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-lg reveal">
+                    <img src="https://public.readdy.ai/ai/img_res/ce20b89437f7c694dc9d063dfe3e1013.jpg" alt="E-commerce Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">A modern e-commerce solution with seamless user experience and robust features.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">React</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Node.js</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-lg reveal">
+                    <img src="https://public.readdy.ai/ai/img_res/31e31ee4ca22ea6a5e9b7a41678c288a.jpg" alt="Mobile App" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Finance Mobile App</h3>
+                        <p class="text-gray-600 mb-4">Personal finance management app with intuitive interface and real-time analytics.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Flutter</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Firebase</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">UI/UX</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card bg-white rounded-lg overflow-hidden shadow-lg reveal">
+                    <img src="https://public.readdy.ai/ai/img_res/dad82d52392bcb33c706a9135d8a48f2.jpg" alt="SaaS Platform" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">SaaS Dashboard</h3>
+                        <p class="text-gray-600 mb-4">Enterprise-level analytics platform with comprehensive data visualization.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Vue.js</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">D3.js</span>
+                            <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <img src="https://public.readdy.ai/ai/img_res/b98e049652c1c867d4598219f439df95.jpg" alt="About Me" class="w-full rounded-2xl shadow-lg">
+                </div>
+                <div class="reveal">
+                    <h2 class="text-4xl font-bold mb-6">About Me</h2>
+                    <p class="text-gray-600 mb-8">With over 8 years of experience in digital design and development, I specialize in creating user-centered solutions that drive business growth. My approach combines creative thinking with technical expertise to deliver exceptional digital experiences.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">UI/UX Design</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Front-end Development</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Back-end Development</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div class="skill-bar h-full bg-primary rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Let's discuss your next project and create something amazing together.</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="reveal">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-8 py-3 bg-primary text-white rounded-button hover:bg-primary/90 transition-colors cursor-pointer">Send Message</button>
+                    </form>
+                </div>
+                <div class="reveal">
+                    <div class="h-full rounded-lg overflow-hidden">
+                        <div class="h-full w-full bg-cover bg-center" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-50 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="#" class="text-3xl font-['Pacifico'] text-primary mb-6 md:mb-0">logo</a>
+                <div class="flex space-x-6">
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
+                        <i class="ri-twitter-fill text-xl"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
+                        <i class="ri-linkedin-fill text-xl"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
+                        <i class="ri-github-fill text-xl"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-primary transition-colors">
+                        <i class="ri-dribbble-fill text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-600">
+                <p>&copy; 2025 All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 cursor-pointer hover:bg-primary/90">
+        <i class="ri-arrow-up-line text-xl"></i>
+    </button>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const backToTop = document.getElementById('backToTop');
+        const nav = document.querySelector('nav');
+        const contactForm = document.getElementById('contactForm');
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('translate-x-full');
+            menuBtn.querySelector('i').classList.toggle('ri-menu-line');
+            menuBtn.querySelector('i').classList.toggle('ri-close-line');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-md');
+                backToTop.classList.remove('opacity-0', 'invisible');
+            } else {
+                nav.classList.remove('shadow-md');
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
+
+            document.querySelectorAll('.reveal').forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < window.innerHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+
+            document.querySelectorAll('.skill-bar').forEach(bar => {
+                const barTop = bar.getBoundingClientRect().top;
+                if (barTop < window.innerHeight - 100) {
+                    bar.style.width = bar.parentElement.previousElementSibling.querySelector('span:last-child').textContent;
+                }
+            });
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            console.log('Form submitted:', data);
+            contactForm.reset();
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-8 left-1/2 -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-all duration-300';
+            toast.textContent = 'Message sent successfully!';
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        });
+
+        if (window.innerWidth >= 1024) {
+            document.addEventListener('mousemove', (e) => {
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+                cursorOutline.style.left = e.clientX - 16 + 'px';
+                cursorOutline.style.top = e.clientY - 16 + 'px';
+            });
+
+            document.querySelectorAll('a, button').forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    cursorOutline.style.transform = 'scale(1.5)';
+                });
+                element.addEventListener('mouseleave', () => {
+                    cursorOutline.style.transform = 'scale(1)';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
